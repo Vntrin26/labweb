@@ -1,0 +1,141 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <!--i class="fa fa-align-justify"></i-->Tasks
+                    <div class="float-right">
+                    <button class="btn btn-primary btn-sm" (click)="logout()">Log Out</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Project</th>
+                                <th>Finished</th>
+                                <th>Description</th>
+                                <th>Finish Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>                            
+                            <tr *ngFor="let item of allTasks">
+                            <ng-container>
+                                <td>{{item.task}}</td>
+                                <td>{{item.Project}}</td>
+                                <td>{{item.Finished}}</td>
+                                <td>{{item.description}}</td>
+                                <td>{{item.finishdate}}</td>
+                                <td><button class="btn btn-default" type="button"(click)="loadTaskToEdit(item.id, item.Project, item.description, item.task, item.Finished); empty=false">Edit</button> </td>
+                                </ng-container>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                        <button class="btn btn-block btn-primary" type="button" (click)="createFlag = true; taskIdToUpdate = null; createSheet(); empty=false" >Add task</button>
+                        <button class="btn btn-block btn-primary" type="button" (click)="projects()" >Projects</button>
+                        <button class="btn btn-block btn-primary" type="button" (click)="users()" >Users</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    {{files}}
+</div>
+<div class="update" *ngIf="taskIdToUpdate">
+    <div class="update-header">
+        <strong>Update</strong>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+                        <label for="task">Task</label>
+                        <input class="form-control" type="text" placeholder="Task" Name="Task"  formControlName="Task">&nbsp;
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="task">Project</label>
+                            <input class="form-control" type="text" placeholder="Project" Name="Project" formControlName="Project">&nbsp;
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input class="form-control" Name="description" placeholder="Describe the task" type="text" formControlName="description">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input class="form-control" Name="description" type="date" formControlName="date">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                    <div class="form-actions form-group"><button type="submit" class="btn btn-success btn-sm">Submit</button></div>
+                </div>
+
+        </form>
+    </div>
+    <div class="alert alert-warning" *ngIf="empty" >
+        All fields are required
+   </div>
+</div>
+<div class="create" *ngIf="createFlag">
+    <div class="create-header">
+        <strong>Create</strong>
+    </div>
+    <div class="card-body">
+        
+        <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+            <!--<input class="form-control" type="hidden" Name="ID"  formControlName="ID">-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="task">Task</label>
+                        <input class="form-control" type="text" placeholder="Task" Name="Task"  formControlName="Task">&nbsp;
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="task">Project</label>
+                            <input class="form-control" type="text" placeholder="Project" Name="Project" formControlName="Project">&nbsp;
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input class="form-control" Name="description" placeholder="Description" type="text" formControlName="description">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input class="form-control" Name="description" type="date" formControlName="date">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                    <div class="form-actions form-group"><button type="submit" class="btn btn-success btn-sm">Submit</button></div>
+                </div>
+        </form>
+    </div>
+    <div class="alert alert-warning" *ngIf="empty" >
+        All fields are required
+   </div>
+</div>

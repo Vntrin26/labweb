@@ -1,0 +1,42 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    Users
+                    <div class="float-right">
+                      <button class="btn btn-primary btn-sm" (click)="logout()">Log Out</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of allUsers">
+                                <td>{{item.Username}}</td>
+                                <td>{{item.Email}}</td>
+                                <td><button class="btn btn-default" type="button"(click)="loadUserToEdit(item.id, item.Username, item.Password, item.Email);empty=false">Edit</button> </td>
+                                <td><button class="btn btn-default">Deactivate</button> </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                        <button class="btn btn-block btn-primary" type="button" (click)="registerFlag = true; userIdToUpdate = null; empty=false" >Add User</button>
+                        <button class="btn btn-block btn-primary" type="button" (click)="tasks()" >Tasks</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    {{files}}
+</div>

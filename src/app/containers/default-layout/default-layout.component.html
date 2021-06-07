@@ -1,0 +1,25 @@
+<app-header [navbarBrandRouterLink]="['/dashboard']" [fixed]="true" [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+    [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
+    <ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+            <a class="nav-link" href="#/dashboard">Dashboard</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+    </ul>
+</app-header>
+<div class="app-body">
+    <app-sidebar [fixed]="true" [display]="'lg'">
+        <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+        <app-sidebar-minimizer></app-sidebar-minimizer>
+    </app-sidebar>
+    <main class="main">
+        <cui-breadcrumb>
+        </cui-breadcrumb>
+    
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- /.container-fluid -->
+    </main>
+</div>
